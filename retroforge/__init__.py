@@ -1,6 +1,6 @@
 """RetroForge OS – lightweight, plugin-driven retro gaming OS (frontend + system services)."""
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 # Bumped whenever the plugin API changes incompatibly. Plugins declare the
 # version they were written for in plugin.json ("api": 1).

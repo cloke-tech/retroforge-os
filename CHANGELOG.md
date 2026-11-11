@@ -1,6 +1,6 @@
 # Changelog
 
-## Unveröffentlicht
+## 0.1.3 – 2026-11-11 · Vorschau
 
 ### Neu
 - **Switch 2 experimentell:** Die Emulatoren [Eglantine](https://github.com/Eglantine-Community/Eglantine) und
