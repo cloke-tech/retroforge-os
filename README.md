@@ -13,26 +13,26 @@ Es basiert auf Debian. Die Oberfläche läuft direkt auf KMS/DRM, also ohne Desk
 
 ## Herunterladen & installieren
 
-Fertige Images für **Version 0.1.2** (alle Versionen unter [Releases](https://github.com/cloke-tech/retroforge-os/releases)):
+Fertige Images für **Version 0.1.3** (alle Versionen unter [Releases](https://github.com/cloke-tech/retroforge-os/releases)):
 
 | Image | Für | Größe |
 |---|---|---|
-| [**pc-x86_64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-x86_64.img.xz) | 64-Bit-PCs, Laptops, Mini-PCs, Handhelds (Steam Deck, ROG Ally …) – BIOS und UEFI | 1,0 GB |
-| [**pc-i686**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-i686.img.xz) | 32-Bit-PCs (Pentium 4, Atom, frühe Core) | 645 MB |
-| [**rpi-arm64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-arm64.img.xz) | Raspberry Pi 3 / 4 / 400 / 5 / 500, CM4 / CM5 | 680 MB |
-| [**rpi-armhf**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-armhf.img.xz) | Raspberry Pi Zero / 1 / 2 / 3 (32 Bit) | 622 MB |
-| [**arm64-uefi**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-arm64-uefi.img.xz) | ARM64 mit UEFI: RK3588 mit EDK2 (Orange Pi 5, Rock 5), Snapdragon X, Ampere, VMs | 612 MB |
-| [**riscv64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-riscv64.img.xz) | RISC-V mit UEFI (VisionFive 2, Milk-V, QEMU) – experimentell | 674 MB |
+| [**pc-x86_64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-pc-x86_64.img.xz) | 64-Bit-PCs, Laptops, Mini-PCs, Handhelds (Steam Deck, ROG Ally …) – BIOS und UEFI | 1,0 GB |
+| [**pc-i686**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-pc-i686.img.xz) | 32-Bit-PCs (Pentium 4, Atom, frühe Core) | 643 MB |
+| [**rpi-arm64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-rpi-arm64.img.xz) | Raspberry Pi 3 / 4 / 400 / 5 / 500, CM4 / CM5 | 682 MB |
+| [**rpi-armhf**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-rpi-armhf.img.xz) | Raspberry Pi Zero / 1 / 2 / 3 (32 Bit) | 629 MB |
+| [**arm64-uefi**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-arm64-uefi.img.xz) | ARM64 mit UEFI: RK3588 mit EDK2 (Orange Pi 5, Rock 5), Snapdragon X, Ampere, VMs | 621 MB |
+| [**riscv64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.3/retroforge-0.1.3-riscv64.img.xz) | RISC-V mit UEFI (VisionFive 2, Milk-V, QEMU) – experimentell | 670 MB |
 
 1. **Flashen** mit [Raspberry Pi Imager](https://www.raspberrypi.com/software/) („Eigenes Image“), [balenaEtcher](https://etcher.balena.io/)
-   oder `xzcat retroforge-0.1.2-<profil>.img.xz | sudo dd of=/dev/sdX bs=4M status=progress`.
+   oder `xzcat retroforge-0.1.3-<profil>.img.xz | sudo dd of=/dev/sdX bs=4M status=progress`.
    SHA-256-Prüfsummen liegen als `.sha256` neben jedem Image.
 2. **Booten.** Beim ersten Start wächst die Datenpartition **RETROFORGE** auf die ganze Karte bzw. Platte.
 3. **Spiele drauf:** Die Partition ist **exFAT** und lässt sich an jedem Windows-PC oder Mac öffnen; ROMs gehören nach
    `roms/<system>/` (jeder Ordner enthält eine `_info.txt` mit den Dateitypen), BIOS-Dateien nach `bios/`.
    Alternativ: USB-Stick einstecken › *Spiele importieren*, **Web-Upload** vom Handy oder **CD/DVD einlegen**.
 
-> **Stand 0.1.2:** Alle Images werden automatisch gebaut und auf startfähige Boot-Dateien geprüft, wurden aber
+> **Stand 0.1.3:** Alle Images werden automatisch gebaut und auf startfähige Boot-Dateien geprüft, wurden aber
 > **noch auf keiner echten Hardware gestartet.** Erfahrungsberichte – auch „bootet nicht“ – helfen sehr:
 > [Hardware-Bericht anlegen](https://github.com/cloke-tech/retroforge-os/issues/new?template=hardware-report.md).
 
