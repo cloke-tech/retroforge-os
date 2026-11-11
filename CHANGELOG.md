@@ -1,5 +1,23 @@
 # Changelog
 
+## Unveröffentlicht
+
+### Neu
+- **Switch 2 experimentell:** Die Emulatoren [Eglantine](https://github.com/Eglantine-Community/Eglantine) und
+  [Lichii](https://github.com/zortos293/Lichii) (Eden-Ableger, GPL-3.0) sind dem System Switch 2 zugeordnet und lassen
+  sich aus ihren offiziellen GitHub-Releases installieren (AppImage für x86-64 und ARM64, ohne PGO-Variante). Start mit
+  `-f -g <Spiel>`, Dateien `.xci`/`.nsp` in `roms/switch2/`. In der Hardware-Leiter erscheint Switch 2 als
+  experimentell (mindestens Vulkan 1.3, 16 GB RAM, GPU-Klasse 4) und zählt nie als höchste lauffähige Konsole.
+- **Plugin `kytyps5`:** PS5-Spiele über die Übersetzungsschicht [KytyPS5](https://github.com/KytyPS5/KytyPS5)
+  (GPL-2.0). Startet `<Spiel>.ps5/app0/`, einen Dump direkt im Ordner oder ZArchive-Dumps (`.zar`). Steht bei der PS5
+  vor AnyPS5; ist nur AnyPS5 installiert, wird weiter AnyPS5 genommen. Wurde ein Spiel vorher mit AnyPS5 konvertiert,
+  legt der Start die Original-Module zurück. Installation aus den offiziellen Linux-Builds.
+- PS5 erkennt jetzt auch `.zar`-Dateien.
+
+### Geändert
+- README, Disc-Meldungen und Systemhinweise auf Stand November 2026 (PS5 über KytyPS5/AnyPS5, Switch 2 über
+  Eglantine/Lichii, Warnung vor inoffiziellen Download-Seiten); Links zeigen auf `cloke-tech/retroforge-os`.
+
 ## 0.1.2 – 2026-10-19 · Vorschau
 
 ### Neu

@@ -83,8 +83,11 @@ class TestTiers(Base):
         self.assertGreaterEqual(a.status("switch"), tiers.PLAYABLE)
         a = self.use("gamingpc")
         self.assertEqual(a.status("ps3"), tiers.FULL)
-        self.assertEqual(a.max_console, "switch")                    # PS4/PS5 are experimental only
-        self.assertEqual(a.status("ps5"), tiers.EXPERIMENTAL)        # AnyPS5 plugin
+        self.assertEqual(a.max_console, "switch")                    # PS4/PS5/Switch 2 are experimental only
+        self.assertEqual(a.status("ps5"), tiers.EXPERIMENTAL)        # KytyPS5 / AnyPS5 plugins
+        self.assertEqual(a.status("switch2"), tiers.EXPERIMENTAL)    # Eglantine / Lichii
+        self.assertEqual(a.verdicts["switch2"].emulator, "eglantine")
+        self.assertLess(self.use("deck").status("switch2"), tiers.PLAYABLE)
         self.assertEqual(a.status("xboxseries"), tiers.UNAVAILABLE)
 
     def test_arch_and_isa_blockers_are_reported(self):
@@ -254,7 +257,7 @@ class TestPlugins(unittest.TestCase):
         try:
             core = Core(tmp).boot(do_probe=False, scan=False)
             for pid in ("stats", "save-backup", "web-upload", "screensaver", "retroachievements", "seasonal",
-                        "anyps5"):
+                        "anyps5", "kytyps5"):
                 self.assertEqual(core.plugins.plugins[pid].status, "loaded", core.plugins.plugins[pid].error)
             self.assertTrue(core.registry.has("theme", "halloween"))
             self.assertTrue(core.registry.has("setting", "backup.keep"))
@@ -297,11 +300,13 @@ class TestAnyPS5(Base):
 
     def test_ladder(self):
         a = self.use("gamingpc")
-        v = a.verdicts["ps5"]
-        self.assertEqual((v.status, v.emulator), (tiers.EXPERIMENTAL, "anyps5"))
+        self.assertEqual(self.core.registry.get("system", "ps5").emulators[:2], ("kytyps5", "anyps5"))
+        v = tiers.evaluate_emulator(self.core.registry.get("emulator", "anyps5"), a.cap)
+        self.assertEqual(v.status, tiers.EXPERIMENTAL)
         self.assertTrue(any("AnyPS5" in r for r in v.reasons))
         self.assertTrue(any("Architektur" in r for r in self.use("pi5").verdicts["ps5"].reasons))
-        reasons = " ".join(self.use("core2").verdicts["ps5"].reasons)
+        reasons = " ".join(tiers.evaluate_emulator(self.core.registry.get("emulator", "anyps5"),
+                                                   self.use("core2").cap).reasons)
         self.assertIn("AVX2", reasons)
         self.assertIn("MOVBE", reasons)
 
@@ -311,14 +316,14 @@ class TestAnyPS5(Base):
         self.core.library.scan()
         g = self.core.library.games["ps5"][0]
         self.assertTrue(g.is_dir)
-        plan = self.core.launcher.plan(g)
+        plan = self.core.launcher.plan(g, "anyps5")
         self.assertEqual(plan.emulator.id, "anyps5")
         self.assertTrue(plan.cmd[1].endswith("port.py"))
         self.assertEqual(plan.cmd[plan.cmd.index("--game") + 1], str(game))
         self.assertNotIn("--to-intel", plan.cmd)                 # Ryzen: no rewrite
         self.assertTrue(any("Erster Start" in n for n in plan.notes))
         self.core.hw = HardwareInfo(**{**PROFILES["gamingpc"].__dict__, "cpu_model": "Intel Core i7-14700K"})
-        self.assertIn("--to-intel", self.core.launcher.plan(g).cmd)
+        self.assertIn("--to-intel", self.core.launcher.plan(g, "anyps5").cmd)
 
     def test_convert_once_and_restore(self):
         port = self.port()
@@ -385,3 +390,88 @@ class TestRomDetect(Base):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestKytyPS5(Base):
+    def run_mod(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "kytyps5_run_test", Path(__file__).resolve().parent.parent / "plugins" / "kytyps5" / "run.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    def make_game(self, name="Astro Bot.ps5", app0=True):
+        game = Path(self.tmp, "roms", "ps5", name)
+        root = game / "app0" if app0 else game
+        (root / "sce_module").mkdir(parents=True)
+        (root / "eboot.bin").write_bytes(b"\x7fELF" + b"\0" * 60)
+        (root / "sce_module" / "libgame.prx").write_text("original")
+        return game
+
+    def test_ladder_prefers_kyty(self):
+        a = self.use("gamingpc")
+        self.assertEqual((a.verdicts["ps5"].status, a.verdicts["ps5"].emulator), (tiers.EXPERIMENTAL, "kytyps5"))
+        self.assertIn("AVX2", " ".join(self.use("core2").verdicts["ps5"].reasons))
+        self.assertEqual(self.use("pi5").status("ps5"), tiers.IMPOSSIBLE)
+
+    def test_launch_plan_and_layouts(self):
+        self.use("gamingpc")
+        game = self.make_game()
+        Path(self.tmp, "roms", "ps5", "Demon's Souls.zar").write_bytes(b"x")
+        self.core.library.scan()
+        games = {Path(g.path).name: g for g in self.core.library.games["ps5"]}
+        plan = self.core.launcher.plan(games["Astro Bot.ps5"])
+        self.assertEqual(plan.emulator.id, "kytyps5")
+        self.assertTrue(plan.cmd[1].endswith("run.py"))
+        self.assertEqual(plan.cmd[plan.cmd.index("--game") + 1], str(game))
+        self.assertIn("kyty_emulator", plan.cmd[plan.cmd.index("--emulator") + 1])
+        self.assertIn("Demon's Souls.zar", games)
+
+        run = self.run_mod()
+        self.assertEqual(run.game_root(game), game / "app0")
+        flat = self.make_game("Flat.ps5", app0=False)
+        self.assertEqual(run.game_root(flat), flat)
+        zar = Path(self.tmp, "roms", "ps5", "Demon's Souls.zar")
+        self.assertEqual(run.game_root(zar), zar)
+        with self.assertRaises(run.RunError):
+            run.game_root(Path(self.tmp, "roms", "ps5"))
+
+    def test_undoes_anyps5_conversion(self):
+        game = self.make_game()
+        state = game / ".anyps5" / "input" / "sce_module"
+        state.mkdir(parents=True)
+        (state / "libgame.prx").write_text("original")
+        (game / "app0" / "sce_module" / "libgame.prx").write_text("converted")
+        (game / "app.elf").write_text("native")
+        run = self.run_mod()
+        self.assertTrue(run.anyps5_converted(game))
+        run.undo_anyps5(game, log=lambda *a: None)
+        self.assertEqual((game / "app0/sce_module/libgame.prx").read_text(), "original")
+        self.assertFalse(run.anyps5_converted(game))
+
+    def test_rejects_encrypted_dump(self):
+        game = self.make_game()
+        (game / "app0" / "eboot.bin").write_bytes(b"SCE\0" + b"\0" * 60)
+        run = self.run_mod()
+        with self.assertRaises(run.RunError):
+            run.check_elf(game / "app0")
+
+
+class TestSwitch2(Base):
+    def test_sources_pick_plain_appimage(self):
+        import re
+        for eid, name in (("eglantine", "eglantine-linux-x86_64.AppImage"), ("lichii", "lichii-linux-x86_64.AppImage")):
+            src = self.core.registry.get("emulator", eid).source
+            self.assertTrue(re.search(src["assets"]["x86_64"], name))
+            self.assertFalse(re.search(src["assets"]["x86_64"], name.replace(".AppImage", "-pgo.AppImage")))
+            self.assertFalse(re.search(src["assets"]["x86_64"], name.replace("x86_64", "aarch64")))
+
+    def test_launch_plan(self):
+        self.use("gamingpc")
+        Path(self.tmp, "roms", "switch2").mkdir(parents=True)
+        Path(self.tmp, "roms", "switch2", "Mario Kart World.xci").write_bytes(b"x")
+        self.core.library.scan()
+        plan = self.core.launcher.plan(self.core.library.games["switch2"][0])
+        self.assertEqual(plan.emulator.id, "eglantine")
+        self.assertEqual(plan.cmd[-3:-1], ["-f", "-g"])

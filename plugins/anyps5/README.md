@@ -5,6 +5,9 @@ Linux-Programme um und implementiert die PS5-Systembibliotheken nach. Der Zen-2-
 CPU, die GPU-Shader werden nach SPIR-V/Vulkan übersetzt. Stand Oktober 2026 laufen nur wenige Spiele vollständig;
 den aktuellen Stand zeigt die [Kompatibilitätsliste](https://alxcbtw.github.io/anyps5-roadmap/).
 
+Meist kommt man mit dem [KytyPS5-Plugin](../kytyps5/README.md) weiter, das bei der PS5 an erster Stelle steht.
+AnyPS5 lässt sich pro Spiel unter *Einstellungen › Emulator* wählen.
+
 ## Voraussetzungen
 
 - x86-64-Prozessor mit AVX2, FMA, F16C, BMI1/2, LZCNT und MOVBE (Intel ab Haswell, AMD ab Zen). Auf Intel werden

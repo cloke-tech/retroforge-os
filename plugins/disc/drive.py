@@ -44,7 +44,7 @@ UNSUPPORTED = {
         "PS4-, PS5- und Xbox-One/Series-Discs sind verschlüsselt, die Schlüssel stecken nur in der Konsole. "
         "Das Laufwerk liest zwar die Rohdaten, kommt aber nicht an die Spieldaten.",
         "PS5-Spiele laufen in RetroForge nur über einen entschlüsselten Dump der eigenen Konsole "
-        "(Plugin AnyPS5). Film-Blu-rays werden nicht abgespielt."]),
+        "(Plugins KytyPS5 und AnyPS5). Film-Blu-rays werden nicht abgespielt."]),
     "unreadable": ("Nicht unterstützt: Disc nicht lesbar", [
         "Das Laufwerk kann diese Disc nicht lesen.",
         "GameCube-, Wii-, Wii-U- und Xbox-Discs sowie die GD-ROM der Dreamcast nutzen Formate, die normale "

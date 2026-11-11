@@ -1,28 +1,28 @@
 # RetroForge OS
 
-[![CI](https://github.com/Karl-Lauterbach24/retroforge-os/actions/workflows/ci.yml/badge.svg)](https://github.com/Karl-Lauterbach24/retroforge-os/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Karl-Lauterbach24/retroforge-os)](https://github.com/Karl-Lauterbach24/retroforge-os/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/Karl-Lauterbach24/retroforge-os/total)](https://github.com/Karl-Lauterbach24/retroforge-os/releases)
+[![CI](https://github.com/cloke-tech/retroforge-os/actions/workflows/ci.yml/badge.svg)](https://github.com/cloke-tech/retroforge-os/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/cloke-tech/retroforge-os)](https://github.com/cloke-tech/retroforge-os/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/cloke-tech/retroforge-os/total)](https://github.com/cloke-tech/retroforge-os/releases)
 [![Lizenz: AGPL-3.0](https://img.shields.io/badge/Lizenz-AGPL--3.0-blue.svg)](LICENSE)
 
 Ein schlankes Retro-Gaming-Betriebssystem: Einschalten, Controller nehmen, spielen.
 Es basiert auf Debian. Die Oberfläche läuft direkt auf KMS/DRM, also ohne Desktop, X11 oder Wayland.
-Über 60 Systeme vom Atari 2600 bis zur Switch werden unterstützt, PS5 experimentell. **Alles** lässt sich per Plugin erweitern.
+Über 60 Systeme vom Atari 2600 bis zur Switch werden unterstützt, **PS5 und Switch 2 experimentell**. **Alles** lässt sich per Plugin erweitern.
 
 ![Startbildschirm](docs/screenshots/home.png)
 
 ## Herunterladen & installieren
 
-Fertige Images für **Version 0.1.2** (alle Versionen unter [Releases](https://github.com/Karl-Lauterbach24/retroforge-os/releases)):
+Fertige Images für **Version 0.1.2** (alle Versionen unter [Releases](https://github.com/cloke-tech/retroforge-os/releases)):
 
 | Image | Für | Größe |
 |---|---|---|
-| [**pc-x86_64**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-x86_64.img.xz) | 64-Bit-PCs, Laptops, Mini-PCs, Handhelds (Steam Deck, ROG Ally …) – BIOS und UEFI | 1,0 GB |
-| [**pc-i686**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-i686.img.xz) | 32-Bit-PCs (Pentium 4, Atom, frühe Core) | 645 MB |
-| [**rpi-arm64**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-arm64.img.xz) | Raspberry Pi 3 / 4 / 400 / 5 / 500, CM4 / CM5 | 680 MB |
-| [**rpi-armhf**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-armhf.img.xz) | Raspberry Pi Zero / 1 / 2 / 3 (32 Bit) | 622 MB |
-| [**arm64-uefi**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-arm64-uefi.img.xz) | ARM64 mit UEFI: RK3588 mit EDK2 (Orange Pi 5, Rock 5), Snapdragon X, Ampere, VMs | 612 MB |
-| [**riscv64**](https://github.com/Karl-Lauterbach24/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-riscv64.img.xz) | RISC-V mit UEFI (VisionFive 2, Milk-V, QEMU) – experimentell | 674 MB |
+| [**pc-x86_64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-x86_64.img.xz) | 64-Bit-PCs, Laptops, Mini-PCs, Handhelds (Steam Deck, ROG Ally …) – BIOS und UEFI | 1,0 GB |
+| [**pc-i686**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-pc-i686.img.xz) | 32-Bit-PCs (Pentium 4, Atom, frühe Core) | 645 MB |
+| [**rpi-arm64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-arm64.img.xz) | Raspberry Pi 3 / 4 / 400 / 5 / 500, CM4 / CM5 | 680 MB |
+| [**rpi-armhf**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-rpi-armhf.img.xz) | Raspberry Pi Zero / 1 / 2 / 3 (32 Bit) | 622 MB |
+| [**arm64-uefi**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-arm64-uefi.img.xz) | ARM64 mit UEFI: RK3588 mit EDK2 (Orange Pi 5, Rock 5), Snapdragon X, Ampere, VMs | 612 MB |
+| [**riscv64**](https://github.com/cloke-tech/retroforge-os/releases/download/v0.1.2/retroforge-0.1.2-riscv64.img.xz) | RISC-V mit UEFI (VisionFive 2, Milk-V, QEMU) – experimentell | 674 MB |
 
 1. **Flashen** mit [Raspberry Pi Imager](https://www.raspberrypi.com/software/) („Eigenes Image“), [balenaEtcher](https://etcher.balena.io/)
    oder `xzcat retroforge-0.1.2-<profil>.img.xz | sudo dd of=/dev/sdX bs=4M status=progress`.
@@ -34,7 +34,7 @@ Fertige Images für **Version 0.1.2** (alle Versionen unter [Releases](https://g
 
 > **Stand 0.1.2:** Alle Images werden automatisch gebaut und auf startfähige Boot-Dateien geprüft, wurden aber
 > **noch auf keiner echten Hardware gestartet.** Erfahrungsberichte – auch „bootet nicht“ – helfen sehr:
-> [Hardware-Bericht anlegen](https://github.com/Karl-Lauterbach24/retroforge-os/issues/new?template=hardware-report.md).
+> [Hardware-Bericht anlegen](https://github.com/cloke-tech/retroforge-os/issues/new?template=hardware-report.md).
 
 ## Highlights
 
@@ -45,7 +45,8 @@ Fertige Images für **Version 0.1.2** (alle Versionen unter [Releases](https://g
 | **Filter auch für Standalone-Emulatoren** | RetroArch-Kerne bekommen Slang-Shader. Dolphin, PCSX2, RPCS3 usw. laufen in **gamescope** und bekommen darüber FSR, NIS, Pixel-Art-Scaling und ReShade-CRT-Effekte. Debian 13 enthält gamescope nicht; ohne gamescope starten sie im schlanken Wayland-Kiosk **cage**, dann ohne diese Filter. |
 | **ROMs direkt im OS laden** | USB-Stick einstecken, dann *Spiele importieren*. Header-Erkennung (NES, GB/GBC, GBA, NDS, N64, Mega Drive, PS1/PS2/PSP-ISOs, GameCube/Wii, Switch, 3DS …) sortiert die Dateien automatisch ein, BIOS-Dateien landen in `bios/`. Alternativ per **Web-Upload vom Handy** (PIN-geschützt) oder über die exFAT-Partition am PC. |
 | **Spiele von Disc** | CD oder DVD einlegen: RetroForge erkennt das System (PS1, PS2, Saturn, Mega-CD, PC Engine CD, PC-FX, 3DO, PC-CD-ROMs) und bietet **Direkt spielen** oder **Als CHD sichern** an, auf Wunsch mit Redump-Abgleich und richtigem Spielnamen. Nicht unterstützte Discs bekommen eine klare Meldung mit Begründung. [Details](plugins/disc/README.md) |
-| **PS5 experimentell** | Über das Plugin [AnyPS5](plugins/anyps5/README.md): kein Emulator, sondern ein Relinker, der PS5-Programme nativ unter Linux startet. Konvertierung beim ersten Start, Stand Oktober 2026 laufen nur wenige Spiele. |
+| **PS5 experimentell** | Zwei Wege, beide als Plugin: [KytyPS5](plugins/kytyps5/README.md) ist eine Übersetzungsschicht, die entpackte Dumps und ZArchive-Dumps (`.zar`) direkt startet und seit November 2026 die meisten Spiele schafft. [AnyPS5](plugins/anyps5/README.md) linkt PS5-Programme beim ersten Start in native Linux-Programme um. Gewählt wird automatisch, pro System oder pro Spiel. |
+| **Switch 2 experimentell** | Die ersten Switch-2-Emulatoren [Eglantine](https://github.com/Eglantine-Community/Eglantine) und [Lichii](https://github.com/zortos293/Lichii) (beide aus Eden hervorgegangen) lassen sich mit einem Klick aus ihren offiziellen GitHub-Releases installieren, für x86-64 und ARM64. Spiele gehören nach `roms/switch2/`. |
 | **Themes** | 6 eingebaute Themes (Synthwave, Phosphor-Terminal, Game Boy, Famicom (hell), Midnight, Demoscene-Plasma) und 2 Saison-Themes per Plugin. Alles ist prozedural, es gibt keine Asset-Dateien. |
 | **Musik & Sounds** | Jedes Theme erzeugt **seine eigene Chiptune-Musik** (Tempo, Tonart, Akkordfolge aus dem Theme-JSON, deterministisch und gecacht). Alternativ läuft eigene Musik aus `/userdata/music` (Playlist oder Zufall). Es gibt 3 Menü-Soundpacks; die Musik wird im Spiel ausgeblendet. |
 | **Plugins für alles** | Systeme, Emulatoren, Shader, Settings, Themes, Hintergründe, Sound-Packs, Screens, Menüeinträge, Sammlungen, ROM-Detektoren und Disc-Aktionen. Dazu kommen Hooks wie `game.before_launch` (Startbefehl umbauen), `hw.probed` und `ui.idle`. Der Kern registriert seine eigenen Inhalte über dieselbe API, deshalb ist jedes Built-in ersetzbar. |
@@ -60,7 +61,7 @@ Weitere Ideen, die schon drin sind: **Empfohlene Filter für deine GPU** per Kli
 | ![Spieleliste mit Details, Favorit und eigenem Filter](docs/screenshots/gamelist.png) | ![Einstellungen pro Spiel mit Vererbungsanzeige](docs/screenshots/settings-game.png) |
 | Spieleliste: Favorit, Region, Spielzeit, Filter pro Spiel | Einstellungen pro Spiel – jede Zeile zeigt, woher ihr Wert kommt |
 | ![Hardware-Leiter mit Beispiel-PC](docs/screenshots/hardware.png) | ![Eingelegte PS2-DVD wird erkannt](docs/screenshots/disc-detected.png) |
-| Hardware-Leiter (Beispiel-PC): Switch als Maximum, PS5 experimentell | Disc eingelegt: direkt spielen oder als CHD sichern |
+| Hardware-Leiter (Beispiel-PC): Switch als Maximum, Switch 2 und PS5 experimentell | Disc eingelegt: direkt spielen oder als CHD sichern |
 | ![Meldung für eine nicht unterstützte PS3-Disc](docs/screenshots/disc-ps3.png) | ![Plugin-Verwaltung mit Warnhinweis](docs/screenshots/plugins.png) |
 | Nicht unterstützte Disc: klare Meldung mit Begründung | Plugins: optionale, riskante Plugins sind markiert und standardmäßig aus |
 
@@ -71,12 +72,12 @@ Weitere Ideen, die schon drin sind: **Empfohlene Filter für deine GPU** per Kli
 ## Ausprobieren ohne Image (Windows/macOS/Linux)
 
 ```bash
-git clone https://github.com/Karl-Lauterbach24/retroforge-os.git && cd retroforge-os
+git clone https://github.com/cloke-tech/retroforge-os.git && cd retroforge-os
 pip install pygame-ce
 python tools/make_demo_library.py            # legt ./userdata mit Demo-Dateien an
 python -m retroforge --windowed              # Frontend im Fenster
 python -m retroforge --probe                 # Hardware-Bericht + Konsolen-Leiter im Terminal
-python -m unittest discover tests            # 36 Tests
+python -m unittest discover tests            # 42 Tests
 ```
 
 Steuerung per Tastatur: Pfeiltasten, **Enter** = A, **Esc** = B, **Tab** = X (Optionen), **F2** = Y (Favorit), **F1** = Start (Menü), **Bild↑/↓** = L/R. Buchstaben tippen startet die Suche. Gamepads funktionieren sofort.
@@ -86,6 +87,7 @@ Steuerung per Tastatur: Pfeiltasten, **Enter** = A, **Esc** = B, **Tab** = X (Op
 | Plugin | Zweck | Standard |
 |---|---|---|
 | [Disc-Laufwerk](plugins/disc/README.md) | CDs/DVDs erkennen, direkt spielen oder als CHD sichern | an |
+| [KytyPS5](plugins/kytyps5/README.md) | PS5-Spiele über die Übersetzungsschicht KytyPS5, auch als `.zar` (experimentell) | an |
 | [AnyPS5](plugins/anyps5/README.md) | PS5-Spiele per Relinker nativ unter Linux (experimentell) | an |
 | Web-Upload | ROMs & BIOS per Browser vom Handy hochladen (PIN, Server nur nach Aktivierung) | an |
 | Spielstatistik | „Meistgespielt“, Statistik-Bildschirm, Sitzungsdauer | an |
@@ -142,14 +144,16 @@ os/                    Image-Build: Profile, Paketlisten, rootfs-Overlay, Bootlo
 tools/                 Demo-Bibliothek, Headless-Screenshots, README-Bilder
 ```
 
-## Ehrliche Grenzen (Stand Oktober 2026)
+## Ehrliche Grenzen (Stand November 2026)
 
 - **Die Images sind noch auf keiner echten Hardware gebootet worden** – gebaut und automatisch geprüft ja, getestet nein.
-- **PS5:** Einen klassischen PS5-Emulator gibt es nicht. [AnyPS5](https://github.com/boykopovar/AnyPS5) portiert einzelne PS5-Spiele **ohne Emulation** nach Linux; laut [Kompatibilitätsliste](https://alxcbtw.github.io/anyps5-roadmap/) (Stand 13.10.2026) sind erst 4 kommerzielle Spiele bestätigt spielbar. In der Leiter erscheint PS5 als **experimentell** und zählt nie als „höchste lauffähige Konsole“. Nötig sind eine x86-64-CPU mit AVX2/BMI2/MOVBE, Vulkan 1.3 und ein **eigener, entschlüsselter Dump**.
-- **Xbox Series und Switch 2** sind als Systeme angelegt, haben aber keinen Emulator. **PS4 (shadPS4)** und **Xbox 360 (Xenia unter Linux)** sind *experimentell*.
+- **PS5:** [KytyPS5](https://github.com/KytyPS5/KytyPS5) startet viele Spiele, durchspielbar sind laut [Kompatibilitätsliste](https://kytyps5.github.io/) aber nur einzelne; [AnyPS5](https://github.com/boykopovar/AnyPS5) schafft noch weniger. Beide laufen nur auf x86-64 mit AVX2/BMI2, Vulkan 1.3 und 16 GB RAM und brauchen einen **eigenen, entschlüsselten Dump**. In der Leiter erscheint PS5 als **experimentell** und zählt nie als „höchste lauffähige Konsole“.
+- **Switch 2:** Eglantine und Lichii gibt es erst seit Ende Oktober 2026, sie ändern sich täglich. Mario Kart World läuft auf starken PCs, vieles andere bleibt hängen oder rendert fehlerhaft. Nötig sind Keys und Firmware einer **eigenen Switch 2**; Eglantine/Lichii verwalten sie selbst (beim ersten Start im Emulator einrichten). Der ROM-Import erkennt Switch-2-Spiele nicht an der Datei und sortiert `.xci`/`.nsp` zur Switch: Switch-2-Spiele bitte selbst nach `roms/switch2/` legen. In der Leiter ist Switch 2 **experimentell**.
+- **Xbox Series** ist als System angelegt, hat aber keinen Emulator. **PS4 (shadPS4)** und **Xbox 360 (Xenia unter Linux)** sind *experimentell*.
+- **Nur offizielle Downloads:** Um Switch-2- und PS5-Emulatoren kreisen gefälschte Download-Seiten mit Schadsoftware. RetroForge lädt ausschließlich aus den GitHub-Releases der Projekte.
 - **Discs:** PS3/PS4/PS5 und Xbox sind verschlüsselt, GameCube/Wii/Wii U und Dreamcast-GD-ROMs kann ein PC-Laufwerk nicht lesen. RetroForge umgeht keinen Kopierschutz – nur das optionale, standardmäßig deaktivierte PS3-Plugin tut das, ausdrücklich auf eigene Gefahr.
 - **gamescope fehlt in Debian 13:** Standalone-Emulatoren starten in cage, Upscaler/ReShade-Filter gibt es dort nicht.
-- Für Switch-Emulatoren gibt es keinen stabilen öffentlichen Download-Kanal; sie werden als AppImage nach `/userdata/emulators` kopiert. **ROMs, BIOS, Firmware und Keys liefert das System nicht mit.**
+- Für die Switch-1-Emulatoren Eden und Ryujinx gibt es keinen stabilen öffentlichen Download-Kanal; sie werden als AppImage nach `/userdata/emulators` kopiert. **ROMs, BIOS, Firmware und Keys liefert das System nicht mit.**
 - Die Anforderungswerte in `builtin/emulators.py` sind konservative Schätzungen; die Leistungsklasse lässt sich in den Einstellungen erzwingen.
 
 ## Roadmap-Ideen
